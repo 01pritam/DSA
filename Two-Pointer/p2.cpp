@@ -1,34 +1,22 @@
-#include<iostream>
-#include<vector>
-#include<map>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int n;cin>>n;
-    vector<int>v(n);
-    for(int i=0;i<n;i++)
-    {
-        cin>>v[i];
-    }
-    int k;cin>>k;
-    int cnt=0,sum=0,i=0,j=0;
-    map<int,int>mp;
-    while(i<n&&j<n)
-    {
-        mp[v[j]]++;
-        while(mp.size()>k)
-        {
-            if(mp[v[i]]==1)
-            {
-                mp.erase(v[i]);
-            }
-            else 
-                mp[v[i]]--;
-            i++;
 
+int main() {
+    int n, K;
+    cin >> n >> K;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    int j = 0, count = 0;
+    map<int, int >mp;
+    for (int i = 0; i < n; i++) {
+        mp[arr[i]]++;
+        while (mp.size() > K) {
+            mp[arr[j]]--;
+            if (mp[arr[j]] == 0) mp.erase(arr[j]);
+            j++;
         }
-        cnt+=j-i+1;
-        j++;
+        count += i - j + 1;
     }
-    cout<<cnt<<endl;
+    cout << count << endl;
 }

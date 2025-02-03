@@ -1,26 +1,17 @@
-#include<iostream>
-#include<vector>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int n;cin>>n;
-    vector<int>v(n);
-    for(int i=0;i<n;i++)
-    {
-        cin>>v[i];
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+    
+    int i = 0, sum = 0, cnt = 0;
+    for (int j = 0; j < n; j++) {
+        sum += arr[j];
+        while (sum > k) sum -= arr[i++];
+        cnt += j - i + 1;
     }
-    int k;cin>>k;
-    int cnt=0,sum=0,i=0,j=0;
-    while(i<n&&j<n)
-    {
-        sum+=v[j];
-        while(sum>k)
-        {
-            sum-=v[i];
-            i++;
-        }
-        cnt+=j-i+1;
-        j++;
-    }
-    cout<<cnt<<endl;
+    cout << cnt << endl;
 }
